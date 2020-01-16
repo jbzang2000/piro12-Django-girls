@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>New post</h1>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+<!--        폼 보안을 위해 해놓은 것-->
+        {{ form.as_p }}
+<!--        이거 하나로 그냥 이게 폼이라는걸 보여주는 것 나머지는 얘를 감싸는 html 이다. -->
+        <button class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+    <head>
+        <title>Django Girls blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+            {% if user.is_authenticated %}<!--이걸 추가함으로써 user가 나여야지만 글 수정이 가능하다! -->
+            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus" ></span></a>
+<!--            이걸 추가해서 헤더에 옆에 더하기 모양이 생긴 것. 또한 여기의 url 은 post_new 라는 링크로 가게 되지-->
+            {% endif %}
+
+            <h1><a href="/">Django Girls Blog</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

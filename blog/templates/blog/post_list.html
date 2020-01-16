@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+<!--base.html에 연결하겠다는 뜻 -->
+
+    <!--{{ posts }}-->
+    <!--이렇게 쓰면 객체 목록으로 이해하고 쓰니까 목록을 나타내지 각각에 대해 나타내진 않는다  -->
+{% for post in posts %}
+    <div class="post">
+        <div class="date">
+            {{ post.published_date }}
+        </div>
+        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <!--이렇게 하면 for 와 endfor 사이의 모든 것은 목록의 모든 객체를 반복함. -->
+        <!--linebreaksbr은 텍스트에서 행 바뀌면 문단으로 변환하라는 뜻. -->
+        <!-- post_detail 이라는건 view 이름이다.-->
+        <!-- pk = post.pk : 데이터베이스의 각 레코드 식별하는 키.-->
+        <!-- post 모델에서 기본 키가 없어서 게시물 새로 생길 때 마다 알아서 그 값이 1, 2, 3 등으로 증가함.-->
+        <!-- post.published_date 처럼 하는거다. -->
+    </div>
+{% endfor %}
+
+
